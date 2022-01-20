@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class MainCollectionVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class MainCollectionVC: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -52,30 +52,6 @@ class MainCollectionVC: UIViewController, UICollectionViewDelegateFlowLayout, UI
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInserts.left
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInserts.left
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInserts
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return calculationItemSize()
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -127,20 +103,11 @@ class MainCollectionVC: UIViewController, UICollectionViewDelegateFlowLayout, UI
     }
     
     // MARK: Вычисляем размеры ячейки в зависимости от экрана
-    private func calculationItemSize() -> CGSize {
+    func calculationItemSize() -> CGSize {
         let paddingWidth = sectionInserts.left * (itemPorRow + 1)
         let avaibleWidth = collectionView.frame.width - paddingWidth
         let widthPerItem = avaibleWidth / itemPorRow
         return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-}
-
-// MARK: NetworkManager Delegate
-
-extension MainCollectionVC: NetworkManagerDelegate {
-    
-    func transportParseArray(_: NetworkManager, with randomPhoto: [FavoriteModel]) {
-        newUpdateArray(with: randomPhoto)
     }
 }
 

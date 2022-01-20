@@ -34,7 +34,7 @@ class FavoriteTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellF", for: indexPath) as! FavoritePhotoViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellF", for: indexPath)
         let nameCreator = favoritePhotos[indexPath.row].nameCreator
         let imageUrl = URL(string: favoritePhotos[indexPath.row].imageUrl)
         

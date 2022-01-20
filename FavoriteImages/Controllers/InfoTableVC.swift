@@ -132,26 +132,30 @@ class InfoTableVC: UITableViewController {
         
     }
     
+    private func alertUpdateDataBase(title: String, message: String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Понятно", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     // Добавление в базу данных
     @objc func buttonAddToFavoriteAction(button: UIButton) {
         guard let addPhoto = currentPhoto else { return }
         StorageManager.saveObject(addPhoto)
-        
+        alertUpdateDataBase(title: "Добавлено!", message: "Изображение добавлено в избранное")
         buttonAddToFavorite.isHidden = true
         buttonDeleteForFavorite.isHidden = false
-        
-        print("Добавление в БД")
     }
     
     // Удаление из базы данных
     @objc func buttonDeleteForFavoriteAction(button: UIButton) {
         guard let deletePhoto = currentPhoto else { return }
         StorageManager.deleteObject(deletePhoto)
-        
+        alertUpdateDataBase(title: "Удалено!", message: "Изображение удалено из избранного")
         buttonAddToFavorite.isHidden = false
         buttonDeleteForFavorite.isHidden = true
-        
-        print("Удаление из БД")
     }
     
     // Размещение лейбла в ячейке
