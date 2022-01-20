@@ -5,10 +5,9 @@
 //  Created by Николай Явтушенко on 18.01.2022.
 //
 
-import Foundation
+import UIKit
 
-
-struct RandonPhotoData: Codable {
+struct ParseDataModel: Codable {
 
     let createdAt: String
     let urls: Urls
@@ -37,3 +36,4 @@ struct Urls: Codable {
 struct User: Codable {
     let username: String
 }
+
