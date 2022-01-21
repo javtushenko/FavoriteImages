@@ -10,4 +10,9 @@
 * Узнавать подробную информацию об изображении <br>
 * Избранное сохраняется в базу данных _Realm_
 
+
+По нажатию на изображение, открываются подробности о нем, загруженные с сайта Unsplash 
 ![Image alt](https://github.com/javtushenko/FavoriteImages/blob/main/ScreenShots/1.png?raw=true)
+
+Поисковой запрос так же загружает изображения и информацию с сайта Unsplash.
+![Image alt](https://github.com/javtushenko/FavoriteImages/blob/main/ScreenShots/2.png?raw=true)
