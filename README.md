@@ -9,3 +9,5 @@
 * Добавлять картинки в избранное <br>
 * Узнавать подробную информацию об изображении <br>
 * Избранное сохраняется в базу данных _Realm_
+
+![Image alt](https://github.com/javtushenko/FavoriteImages/blob/main/ScreenShots/1.png?raw=true)
