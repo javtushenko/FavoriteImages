@@ -14,8 +14,8 @@ class InfoTableVC: UITableViewController {
     let buttonAddToFavorite = UIButton()
     let buttonDeleteForFavorite = UIButton()
     
-    var currentPhoto: FavoriteModel!
-    var favoritePhoto: Results<FavoriteModel>!
+    var currentPhoto: UnitedDataModel!
+    var favoritePhoto: Results<UnitedDataModel>!
     var segueSourceFavorite = false
     
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class InfoTableVC: UITableViewController {
             
         case 2:
             let dateLabel = UILabel()
-            dateLabel.text = "Дата создания: \(currentPhoto.dateCreator)"
+            dateLabel.text = "Дата создания: \(currentPhoto.dateCreator!)"
             cell.addSubview(dateLabel)
             labelCenterInCell(label: dateLabel, cell: cell)
             return cell
@@ -120,6 +120,7 @@ class InfoTableVC: UITableViewController {
             buttonAddToFavorite.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
             buttonAddToFavorite.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
             buttonAddToFavorite.setAttributedTitle(NSAttributedString(string: "Добавить в избранное"), for: .normal)
+            buttonAddToFavorite.tintColor = .blue
             
             buttonDeleteForFavorite.translatesAutoresizingMaskIntoConstraints = false
             buttonDeleteForFavorite.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true

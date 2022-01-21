@@ -11,14 +11,14 @@ let realm = try! Realm()
 
 class StorageManager {
     
-    static func saveObject(_ photo: FavoriteModel) {
+    static func saveObject(_ photo: UnitedDataModel) {
         
         try! realm.write{
             realm.add(photo)
         }
     }
     
-    static func deleteObject(_ photo: FavoriteModel) {
+    static func deleteObject(_ photo: UnitedDataModel) {
         
         try! realm.write {
             realm.delete(photo)

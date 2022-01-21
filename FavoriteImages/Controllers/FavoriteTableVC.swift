@@ -12,12 +12,12 @@ import AlamofireImage
 
 class FavoriteTableVC: UITableViewController {
     
-    var favoritePhotos: Results<FavoriteModel>!
+    var favoritePhotos: Results<UnitedDataModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        favoritePhotos = realm.objects(FavoriteModel.self)
+        favoritePhotos = realm.objects(UnitedDataModel.self)
         
         tableView.reloadData()
     }

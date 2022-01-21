@@ -7,18 +7,18 @@
 
 import RealmSwift
 
-class FavoriteModel: Object {
+class UnitedDataModel: Object {
     
     @objc dynamic var imageUrl = ""
     @objc dynamic var nameCreator = "Имя не получено"
-    @objc dynamic var dateCreator = "Дата не получена"
+    @objc dynamic var dateCreator: String? = "Дата не получена"
     @objc dynamic var locationCity: String?
     @objc dynamic var locationCountry: String?
     @objc dynamic var countDownloads = "Данные не получены"
     
     convenience init( imageUrl: String,
                       nameCreator: String,
-                      dateCreator: String,
+                      dateCreator: String?,
                       locationCity: String?,
                       locationCountry: String?,
                       countDownloads: String ) {

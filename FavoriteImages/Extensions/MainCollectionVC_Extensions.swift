@@ -38,9 +38,35 @@ extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
 // MARK: NetworkManager Delegate
 extension MainCollectionVC: NetworkManagerDelegate {
     
-    func transportParseArray(_: NetworkManager, with randomPhoto: [FavoriteModel]) {
+    func transportParseArray(_: NetworkManager, with randomPhoto: [UnitedDataModel]) {
         newUpdateArray(with: randomPhoto)
     }
 }
 
- 
+
+extension MainCollectionVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if searchBar.text != nil {
+            let request = searchBar.text
+            print(request!)
+            networkManager.fetchSearchResult(request: request!)
+            self.collectionView.reloadData()
+            self.searchPerformed = true
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
+        if searchPerformed {
+            networkManager.fetchRandomImages()
+        }
+    }
+    
+}

@@ -12,14 +12,14 @@ import AlamofireImage
 class MainCollectionVC: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     let searchBar = UISearchBar()
     
     let itemPorRow: CGFloat = 2
     let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     
-    var randomPhotoArray = [FavoriteModel]()
+    var currentPhotosArray = [UnitedDataModel]()
     var networkManager = NetworkManager()
+    var searchPerformed = false
     
     // MARK: ViewDidLoad
     
@@ -28,24 +28,13 @@ class MainCollectionVC: UIViewController, UICollectionViewDataSource {
         
         networkManager.fetchRandomImages()
         networkManager.delegate = self
-
-        // Настройка Serch bar
-        view.addSubview(searchBar)
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
-        searchBar.placeholder = "Найти изображение на Unsplash"
         
-        // Настройка Collection View
+        searchBarLayout()
+        searchBar.delegate = self
+
+        collectionViewLayout()
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
-        
     }
     
     // MARK: Настройка ячеек View Collection
@@ -56,7 +45,7 @@ class MainCollectionVC: UIViewController, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return randomPhotoArray.count
+        return currentPhotosArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -66,7 +55,7 @@ class MainCollectionVC: UIViewController, UICollectionViewDataSource {
         let randomImage = UIImageView()
         
         if indexPath.count != 0 {
-            if let imageUrl = URL(string: randomPhotoArray[indexPath.item].imageUrl){
+            if let imageUrl = URL(string: currentPhotosArray[indexPath.item].imageUrl){
                 randomImage.af.setImage(withURL: imageUrl)
             }
         }
@@ -74,18 +63,40 @@ class MainCollectionVC: UIViewController, UICollectionViewDataSource {
         randomImage.translatesAutoresizingMaskIntoConstraints = false
         randomImage.contentMode = .scaleAspectFill
         randomImage.clipsToBounds = true
+        randomImage.heightAnchor.constraint(equalToConstant: calculationItemSize().height).isActive = true
+        randomImage.widthAnchor.constraint(equalToConstant: calculationItemSize().width).isActive = true
         randomImage.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 0).isActive = true
         randomImage.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: 0).isActive = true
         randomImage.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: 0).isActive = true
         randomImage.topAnchor.constraint(equalTo: cell.topAnchor, constant: 0).isActive = true
-
+        
         return cell
     }
     
+    // Настройка отображения Collection View
+    func collectionViewLayout() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    // Настройка отображения Search Bar
+    func searchBarLayout() {
+        view.addSubview(searchBar)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        searchBar.placeholder = "Найти изображения на Unsplash"
+        searchBar.barTintColor = .systemGray6
+    }
+    
     // MARK: Транспортируем массив из модели
-    func newUpdateArray(with randomPhotoForDelegate: [FavoriteModel]) {
+    func newUpdateArray(with randomPhotoForDelegate: [UnitedDataModel]) {
         DispatchQueue.main.async {
-            self.randomPhotoArray = randomPhotoForDelegate
+            self.currentPhotosArray = randomPhotoForDelegate
             self.collectionView.reloadData()
             print("Массив транспортирован в MainCollectionVC")
         }
@@ -97,7 +108,7 @@ class MainCollectionVC: UIViewController, UICollectionViewDataSource {
             if identifier == "infoRandom" {
                 let infoVC = segue.destination as! InfoTableVC
                 guard let indexPath = collectionView.indexPathsForSelectedItems?[0] else { return }
-                infoVC.currentPhoto = self.randomPhotoArray[indexPath.item]
+                infoVC.currentPhoto = self.currentPhotosArray[indexPath.item]
                 infoVC.segueSourceFavorite = false
             }
     }
@@ -109,5 +120,8 @@ class MainCollectionVC: UIViewController, UICollectionViewDataSource {
         let widthPerItem = avaibleWidth / itemPorRow
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
+    
+    func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        view.endEditing(true)
+        }
 }
-

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zau-Qu-z7E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Soq-oB-1oD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Случайные-->
         <scene sceneID="YMc-jM-ndQ">
             <objects>
                 <viewController id="DnV-D3-Hdp" customClass="MainCollectionVC" customModule="FavoriteImages" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         <viewLayoutGuide key="safeArea" id="bgD-d6-4KI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="zko-YU-h9r"/>
+                    <tabBarItem key="tabBarItem" title="Случайные" selectedImage="square.grid.2x2.fill" catalog="system" id="Wx2-gy-vS8"/>
                     <navigationItem key="navigationItem" id="cUn-u1-jH2"/>
                     <connections>
                         <outlet property="collectionView" destination="RJl-1b-YhG" id="OED-S6-wM8"/>
@@ -54,9 +54,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGM-60-Vlq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839.1304347826087" y="13.392857142857142"/>
+            <point key="canvasLocation" x="2747.826086956522" y="24.776785714285712"/>
         </scene>
-        <!--Item-->
+        <!--Избранные-->
         <scene sceneID="Okx-3Z-ZDw">
             <objects>
                 <tableViewController id="TIw-GJ-dZz" customClass="FavoriteTableVC" customModule="FavoriteImages" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,11 +82,11 @@
                             <outlet property="delegate" destination="TIw-GJ-dZz" id="Ulp-5d-8K9"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="tNM-MA-W5g"/>
+                    <tabBarItem key="tabBarItem" title="Избранные" selectedImage="square.grid.2x2" catalog="system" id="tNM-MA-W5g"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkJ-gc-fuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839.1304347826087" y="711.83035714285711"/>
+            <point key="canvasLocation" x="2749.275362318841" y="711.83035714285711"/>
         </scene>
         <!--Info TableVC-->
         <scene sceneID="dWT-Z1-vrX">
@@ -115,31 +115,33 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRv-FE-JNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2926.0869565217395" y="373.66071428571428"/>
+            <point key="canvasLocation" x="4746.376811594203" y="373.66071428571428"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="eMr-qn-z32">
+        <scene sceneID="Mdo-yK-U9i">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Zau-Qu-z7E" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Soq-oB-1oD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cfN-Dd-c48">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OuR-uN-8bv">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="DnV-D3-Hdp" kind="relationship" relationship="viewControllers" id="nXK-hv-bzZ"/>
-                        <segue destination="TIw-GJ-dZz" kind="relationship" relationship="viewControllers" id="LSl-Mx-1b4"/>
+                        <segue destination="DnV-D3-Hdp" kind="relationship" relationship="viewControllers" id="non-go-pV6"/>
+                        <segue destination="TIw-GJ-dZz" kind="relationship" relationship="viewControllers" id="SL0-PO-hyO"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RjT-If-U4V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OeL-CN-seg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="362.27678571428572"/>
+            <point key="canvasLocation" x="1837.68115942029" y="368.30357142857139"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jaV-oH-HFs"/>
+        <segue reference="8Fm-za-fGe"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
+        <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
